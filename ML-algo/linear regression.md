@@ -1,4 +1,3 @@
-````markdown
 # Linear Regression in Machine Learning (Complete Interview Guide)
 
 > A complete guide to Linear Regression covering theory, intuition, mathematics, interview questions, formulas, algorithms, graphs, assumptions, advantages, disadvantages, and practical applications.
@@ -968,5 +967,5 @@ When the model learns noise in the training data and performs poorly on unseen d
 # Final Summary
 
 Linear Regression is one of the most fundamental supervised machine learning algorithms. It models the relationship between one or more **independent variables (X)** and a **dependent variable (Y)** by fitting the best possible straight line. The objective is to minimize prediction error, commonly using the **Mean Squared Error (MSE)** cost function, with parameters optimized through **Gradient Descent** or analytical methods. It is ideal for predicting continuous values such as prices, salaries, sales, and temperatures, provided the relationship between variables is approximately linear. Understanding Linear Regression builds a strong foundation for advanced machine learning topics such as Logistic Regression, Neural Networks, and Deep Learning.
-````
+
 
