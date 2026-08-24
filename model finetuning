@@ -1,1 +1,378 @@
+This is exactly the right stage to learn fine-tuning. You've already seen:
 
+✅ Model can memorize
+ ✅ Small datasets can overfit
+ ✅ Pretrained knowledge can compete with new knowledge
+
+Now let's understand types of fine-tuning and when to use them.
+
+Big Picture
+
+Suppose you have:
+
+Pretrained Model
+      ↓
+Need to adapt it
+      ↓
+Choose Fine-tuning Method
+
+
+There are 5 major types you'll hear about.
+
+1. Full Fine-Tuning
+What happens?
+
+All model weights are updated.
+
+Original Model
+      ↓
+Change every parameter
+      ↓
+New Model
+
+
+For a 7B model:
+
+7 billion parameters updated
+
+Pros
+Highest flexibility
+Can significantly change behavior
+Cons
+Requires lots of GPU memory
+Expensive
+Can cause catastrophic forgetting
+Use When
+Building your own foundation model
+Research work
+Very large training datasets
+Beginner?
+
+❌ No
+
+2. LoRA (Most Popular)
+
+LoRA = Low Rank Adaptation
+
+Instead of changing the whole model:
+
+Base Model
++
+Small Adapter
+
+
+Only adapter weights are trained.
+
+Base Model (Frozen)
++
+Learnable LoRA Layers
+
+Pros
+Very low GPU usage
+Fast training
+Keeps original intelligence
+Cons
+Slightly less flexible than full tuning
+Use When
+
+✅ Chatbots
+ ✅ Company knowledge assistant
+ ✅ Domain adaptation
+ ✅ Most real-world projects
+
+Industry Reality
+
+Today most Llama, Qwen, Mistral, Phi fine-tuning is done using LoRA.
+
+3. QLoRA
+
+QLoRA = Quantized LoRA
+
+Model loaded in 4-bit.
+
+Normal Model
+↓
+Quantized Model
+↓
+LoRA Training
+
+Benefits
+
+Even less memory.
+
+Example:
+
+Model	LoRA	QLoRA7B	~16GB	~8GB
+Use When
+
+✅ Consumer GPUs
+ ✅ Kaggle GPU
+ ✅ Colab GPU
+
+Beginner?
+
+✅ Yes
+
+Actually this is probably what you'll eventually use.
+
+4. Instruction Fine-Tuning
+
+This is not a technical method.
+
+It is a goal.
+
+Example dataset:
+
+User: What is AI?
+Assistant: Artificial Intelligence
+
+
+or
+
+{
+"instruction":"Translate English to French",
+"output":"Bonjour"
+}
+
+
+Teaching the model:
+
+Human asks question
+↓
+Model gives helpful answer
+
+Use When
+Building assistants
+Chatbots
+Question answering systems
+
+Examples:
+
+ChatGPT
+Copilot
+Gemini
+Claude
+
+
+All undergo instruction tuning.
+
+5. Domain Fine-Tuning
+
+Teaching specialized knowledge.
+
+Example:
+
+Medical
+Patient reports diabetes...
+
+Legal
+Contract law...
+
+Qualcomm
+SNPE deployment
+DLC conversion
+DSP execution
+
+
+Goal:
+
+General Model
+↓
+Domain Expert Model
+
+Use When
+
+Company-specific applications.
+
+Real-World Scenarios
+Scenario A
+
+You want:
+
+A chatbot for your college website.
+
+
+Use:
+
+LoRA
++
+Instruction Tuning
+
+Scenario B
+
+You want:
+
+Teach Qualcomm SDK documentation
+
+
+Use:
+
+LoRA
++
+Domain Fine-Tuning
+
+Scenario C
+
+You want:
+
+Create Llama-4 from scratch
+
+
+Use:
+
+Full Fine-Tuning
+
+
+Needs huge compute.
+
+Scenario D
+
+You have:
+
+Colab GPU
+
+
+Use:
+
+QLoRA
+
+Fine-Tuning vs RAG
+
+New learners often confuse these.
+
+Fine-Tuning
+
+Changes model behavior.
+
+Example:
+
+Be polite.
+Answer in JSON.
+Act as network engineer.
+
+
+Good for:
+
+✅ Style
+ ✅ Behavior
+ ✅ Formatting
+
+RAG
+
+Model does not memorize.
+
+Instead:
+
+Question
+↓
+Search Documents
+↓
+Give Context
+↓
+Generate Answer
+
+
+Good for:
+
+✅ Company documents ✅ PDFs ✅ Frequently changing information
+
+What Should You Learn First?
+Stage 1 (Current)
+
+You already did:
+
+✅ Tiny GPT2 Fine-Tuning
+
+Learn:
+
+Dataset
+Tokenization
+Training
+Inference
+Stage 2
+
+Learn LoRA concept.
+
+Understand:
+
+Base Model
++
+Adapter
+
+
+No coding yet.
+
+Stage 3
+
+Use TinyLlama
+
+Learn:
+
+PEFT
+LoRA
+Trainer
+
+Stage 4
+
+Use LLaMA-Factory
+
+This is beginner-friendly.
+
+You'll get a UI where you can select:
+
+Model
+Dataset
+LoRA
+Train
+
+
+without much coding.
+
+Mental Model to Remember
+
+Whenever you start a project, ask:
+
+Do I want new knowledge?
+
+Example:
+
+Company documents
+
+
+Use:
+
+RAG
+
+Do I want different behavior/style?
+
+Example:
+
+Act like customer support
+
+
+Use:
+
+LoRA Fine-Tuning
+
+Do I want to completely rebuild the model?
+
+Use:
+
+Full Fine-Tuning
+
+
+Rare and expensive.
+
+For a beginner in 2026, I would learn in this order:
+
+1. Tiny GPT2 Training ✅
+2. Tokenization
+3. LoRA
+4. QLoRA
+5. TinyLlama Fine-Tuning
+6. LLaMA-Factory
+7. RAG
+8. Deployment
+
+
+Honestly, after your "AI → Banana" experiment, you're already understanding one of the most important concepts in LLM training: fine-tuning changes probabilities, it does not simply replace facts like a database. That's a concept many beginners struggle with.
